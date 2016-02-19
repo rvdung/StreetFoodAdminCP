@@ -1,6 +1,6 @@
 
 /*
- * Copyright (C) 2011 Viettel Telecom. All rights reserved.
+ * Copyright (C) 2011 dungnv. All rights reserved.
  * VIETTEL PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.dungnv.streetfood.service;

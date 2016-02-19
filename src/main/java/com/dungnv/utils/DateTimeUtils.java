@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 Viettel Telecom. All rights reserved.
+ * Copyright (C) 2010 dungnv. All rights reserved.
  * VIETTEL PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.dungnv.utils;
