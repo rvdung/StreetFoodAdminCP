@@ -7,6 +7,7 @@ package com.dungnv.streetfood.service;
 
 import com.dungnv.streetfood.dto.ArticleDTO;
 import com.dungnv.streetfood.dto.CategoryDTO;
+import com.dungnv.streetfood.dto.DishDTO;
 import com.dungnv.streetfood.dto.LocaleDTO;
 import com.dungnv.streetfood.dto.ResultDTO;
 import com.dungnv.streetfood.dto.TagsDTO;
@@ -183,6 +184,33 @@ public class ClientServiceImpl implements ClientService {
             , int maxRow, String sortType, String sortFieldList) {
         return client.getListLocaleDTO(userName, localeCode, countryCode, token//
                 , localeDTO, rowStart, maxRow, sortType, sortFieldList);
+    }
+
+    @Override
+    public ResultDTO insertDish(String userName, String localeCode, String countryCode, String token, DishDTO dishDTO) {
+        return client.insertDish(userName, localeCode, countryCode, token, dishDTO);
+    }
+
+    @Override
+    public ResultDTO updateDish(String userName, String localeCode, String countryCode, String token, DishDTO dishDTO) {
+        return client.updateDish(userName, localeCode, countryCode, token, dishDTO);
+    }
+
+    @Override
+    public ResultDTO deleteDish(String userName, String localeCode, String countryCode, String token, Long id) {
+        return client.deleteDish(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public List<DishDTO> getListDishDTOLess(String userName, String localeCode, String countryCode//
+            , String token, DishDTO dishDTO, int rowStart, int maxRow, boolean isCount, String sortType, String sortFieldList) {
+        return client.getListDishDTOLess(userName, localeCode, countryCode//
+                , token, dishDTO, rowStart, maxRow, isCount, sortType, sortFieldList);
+    }
+
+    @Override
+    public DishDTO getDishDetail(String userName, String localeCode, String countryCode, String token, String id) {
+        return client.getDishDetail(userName, localeCode, countryCode, token, id);
     }
 
 }

@@ -20,7 +20,8 @@
         /*        border: #a3a3a3 solid 1px;
                 border-radius: 7px;*/
         border-bottom: #a3a3a3 solid 1px;
-        max-height: 55px;
+        max-height: 90px;
+        min-height: 55px;
         cursor: pointer;
        
         img{
@@ -121,5 +122,9 @@
         box-shadow: none;
         background: none;
         border: none;
+    }
+    
+    .wizard-layout{
+        overflow: scroll;
     }
 }

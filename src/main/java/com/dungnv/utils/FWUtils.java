@@ -35,7 +35,8 @@ public class FWUtils {
       HttpURLConnection con =
          (HttpURLConnection) new URL(URLName).openConnection();
       con.setRequestMethod("HEAD");
-      return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+//      return (con.getResponseCode() == HttpURLConnection.HTTP_OK);
+      return true;
     }
     catch (Exception e) {
        e.printStackTrace();

@@ -7,6 +7,7 @@ package com.dungnv.streetfood.service;
 
 import com.dungnv.streetfood.dto.ArticleDTO;
 import com.dungnv.streetfood.dto.CategoryDTO;
+import com.dungnv.streetfood.dto.DishDTO;
 import com.dungnv.streetfood.dto.LocaleDTO;
 import com.dungnv.streetfood.dto.ResultDTO;
 import com.dungnv.streetfood.dto.TagsDTO;
@@ -84,6 +85,49 @@ public interface ClientService {
             , @WebParam(name = "token") String token//
             , @WebParam(name = "id") String id);
 
+    // Dish
+    @WebMethod(operationName = "insertDish")
+    public ResultDTO insertDish(@WebParam(name = "userName") String userName//
+            , @WebParam(name = "localeCode") String localeCode//
+            , @WebParam(name = "countryCode") String countryCode//
+            , @WebParam(name = "token") String token//
+            , @WebParam(name="dishDTO") DishDTO dishDTO);
+    //
+    @WebMethod(operationName = "updateDish")
+    public ResultDTO updateDish(@WebParam(name = "userName") String userName//
+            , @WebParam(name = "localeCode") String localeCode//
+            , @WebParam(name = "countryCode") String countryCode//
+            , @WebParam(name = "token") String token//
+            , @WebParam(name = "dishDTO") DishDTO dishDTO);
+    //
+    @WebMethod(operationName = "deleteDish")
+    public ResultDTO deleteDish(@WebParam(name = "userName") String userName//
+            , @WebParam(name = "localeCode") String localeCode//
+            , @WebParam(name = "countryCode") String countryCode//
+            , @WebParam(name = "token") String token//
+            , @WebParam(name = "dishDTOId") Long id);
+    
+     @WebMethod(operationName = "getListDishDTOLess")
+    public List<DishDTO> getListDishDTOLess(//
+            @WebParam(name = "userName") String userName//
+            , @WebParam(name = "localeCode") String localeCode//
+            , @WebParam(name = "countryCode") String countryCode//
+            , @WebParam(name = "token") String token//
+            , @WebParam(name = "dishDTO") DishDTO dishDTO//
+            , @WebParam(name = "rowStart") int rowStart//
+            , @WebParam(name = "maxRow") int maxRow//
+            , @WebParam(name = "isCount") boolean isCount//
+            , @WebParam(name = "sortType") String sortType//
+            , @WebParam(name = "sortFieldList") String sortFieldList);
+    
+    @WebMethod(operationName = "getDishDetail")
+    public DishDTO getDishDetail(//
+            @WebParam(name = "userName") String userName//
+            , @WebParam(name = "localeCode") String localeCode//
+            , @WebParam(name = "countryCode") String countryCode//
+            , @WebParam(name = "token") String token//
+            , @WebParam(name = "id") String id);
+    
     //User
     @WebMethod(operationName = "login")
     public ResultDTO login(@WebParam(name = "userName") String userName//
