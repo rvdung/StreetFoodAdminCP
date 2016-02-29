@@ -1,6 +1,6 @@
 /**
  * @(#)UserForm.java ,
- * Copyright 2011 Viettel Telecom. All rights reserved
+ * Copyright 2011 dungnv. All rights reserved
  * VIETTEL PROPRIETARY/CONFIDENTIAL
  */
 package com.dungnv.streetfood.dto;

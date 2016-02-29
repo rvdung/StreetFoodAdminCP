@@ -1,13 +1,13 @@
 /*
- * Copyright (C) 2012 Viettel Telecom. All rights reserved.
+ * Copyright (C) 2012 dungnv. All rights reserved.
  * VIETTEL PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.dungnv.utils;
 
 import java.util.ArrayList;
+import org.apache.commons.codec.binary.Base64;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -252,11 +252,11 @@ public final class StringUtils {
         string.replace(", ", "");
         return string.split(",");
     }
-    
+
     public static boolean isNullOrEmpty(String obj1) {
         return (obj1 == null || "".equals(obj1.trim()));
     }
-	
+
     public static String getStringToComponentValue(Object obj1, String defaultValue) {
         if (obj1 == null || obj1.toString().trim().equals("")) {
             if (isNullOrEmpty(defaultValue)) {
@@ -268,39 +268,42 @@ public final class StringUtils {
             return obj1.toString().trim();
         }
     }
+
     public static boolean isStringNullOrEmpty(Object obj1) {
         return obj1 == null || obj1.toString().trim().equals("");
     }
-        
-   /**
-    * sondt20 20150916
-    */
+
+    /**
+     * sondt20 20150916
+     */
     public static String ESCAPE_SQL_SPECIAL_CHARACTER = " escape '\\'";
-    
-   /**
-    * sondt20 20150811
-    * @param str
-    * @return 
-    */
-    public static String replaceSpecicalChracterSQL(String str){
+
+    /**
+     * sondt20 20150811
+     *
+     * @param str
+     * @return
+     */
+    public static String replaceSpecicalChracterSQL(String str) {
         return str.trim()
                 .replaceAll("%", "\\\\%")
                 .replaceAll("_", "\\\\_");
     }
-    
+
     /**
      * sondt20 20150817
+     *
      * @param maxlength
      * @param str
-     * @return 
+     * @return
      */
-    public static boolean checkMaxlength(Long maxlength, String str){
-        if (str!=null && str.trim().length()<maxlength){
+    public static boolean checkMaxlength(Long maxlength, String str) {
+        if (str != null && str.trim().length() < maxlength) {
             return true;
         }
         return false;
     }
-        
+
 //    /**
 //     * convert Key to Value by Map
 //     * sondt20 20150828
@@ -342,7 +345,6 @@ public final class StringUtils {
 //        }
 //        return priStr;
 //    }
-
     public static String removeSeparator(String pathInput) {
         String path = pathInput;
         path = path.replace("\\\\", "\\").replace("//", "/");
@@ -353,13 +355,27 @@ public final class StringUtils {
     public static String getStringParttern(String input, String pattern) {
         try {
             Pattern patterns = Pattern.compile(pattern);
-        Matcher matcher = patterns.matcher(input);
-        if (matcher.find()) {
-             return matcher.group(0);
-        }
+            Matcher matcher = patterns.matcher(input);
+            if (matcher.find()) {
+                return matcher.group(0);
+            }
         } catch (Exception e) {
         }
-        
+
         return input;
+    }
+
+    public static String encodeBase64(String source) {
+        if (isNullOrEmpty(source)) {
+            return "";
+        }
+        return Base64.encodeBase64String(org.apache.commons.codec.binary.StringUtils.getBytesUtf8(source));
+    }
+
+    public static String decodeBase64(String source) {
+        if (isNullOrEmpty(source)) {
+            return "";
+        }
+        return org.apache.commons.codec.binary.StringUtils.newStringUtf8(Base64.decodeBase64(source));
     }
 }
