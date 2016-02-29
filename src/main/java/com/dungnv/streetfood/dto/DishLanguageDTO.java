@@ -1,18 +1,17 @@
 
 /*
-* Copyright (C) 2011 dungnv. All rights reserved.
+* Copyright (C) 2011 Viettel Telecom. All rights reserved.
 * VIETTEL PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
+*/
 package com.dungnv.streetfood.dto;
 
 /**
- * @author dungnv
- * @version 1.0
- * @since 1/25/2016 10:02 PM
- */
-public class DishLanguageDTO {
-    //Fields
-
+* @author dungnv
+* @version 1.0
+* @since 1/25/2016 10:02 PM
+*/
+public class DishLanguageDTO{    
+	//Fields
     private String id;
     private String name;
     private String shortDescription;
@@ -20,85 +19,67 @@ public class DishLanguageDTO {
     private String dishId;
     private String dishIdName;
     private String languageCode;
-
-    protected String defaultSortField;
-
     //Constructor
-    public DishLanguageDTO() {
-    }
-
-    public DishLanguageDTO(String id, String name, String shortDescription, String longDescription, String dishId, String languageCode) {
-        this.id = id;
-        this.name = name;
-        this.shortDescription = shortDescription;
-        this.longDescription = longDescription;
-        this.dishId = dishId;
-        this.languageCode = languageCode;
-    }
-    //Getters and setters
-
-    public String getDefaultSortField() {
-        return defaultSortField;
-    }
-
-    public void setDefaultSortField(String defaultSortField) {
-        this.defaultSortField = defaultSortField;
-    }
-
-    public void setId(String id) {
+	public DishLanguageDTO() {	
+	}
+	public DishLanguageDTO(String id, String name, String shortDescription, String longDescription, String dishId, String languageCode) {
+		this.id = id;
+		this.name = name;
+		this.shortDescription = shortDescription;
+		this.longDescription = longDescription;
+		this.dishId = dishId;
+		this.languageCode = languageCode;
+	}	
+	//Getters and setters
+    
+	public void setId(String id) {
         this.id = id;
     }
-
-    public String getId() {
-        return id;
+	public String getId() {		
+        return id;		
     }
-
-    public void setName(String name) {
+    
+	public void setName(String name) {
         this.name = name;
     }
-
-    public String getName() {
-        return name;
+	public String getName() {		
+        return name;		
     }
-
-    public void setShortDescription(String shortDescription) {
+    
+	public void setShortDescription(String shortDescription) {
         this.shortDescription = shortDescription;
     }
-
-    public String getShortDescription() {
-        return shortDescription;
+	public String getShortDescription() {		
+        return shortDescription;		
     }
-
-    public void setLongDescription(String longDescription) {
+    
+	public void setLongDescription(String longDescription) {
         this.longDescription = longDescription;
     }
-
-    public String getLongDescription() {
-        return longDescription;
+	public String getLongDescription() {		
+        return longDescription;		
     }
-
-    public void setDishId(String dishId) {
+    
+	public void setDishId(String dishId) {
         this.dishId = dishId;
     }
-
-    public String getDishId() {
-        return dishId;
+	public String getDishId() {		
+        return dishId;		
     }
-
-    public void setDishIdName(String dishIdName) {
+    
+	public void setDishIdName(String dishIdName) {
         this.dishIdName = dishIdName;
     }
-
-    public String getDishIdName() {
-        return dishIdName;
+	public String getDishIdName() {		
+        return dishIdName;		
     }
-
-    public void setLanguageCode(String languageCode) {
+	public void setLanguageCode(String languageCode) {
         this.languageCode = languageCode;
     }
-
-    public String getLanguageCode() {
-        return languageCode;
+	public String getLanguageCode() {		
+        return languageCode;		
     }
-
+    
+	
 }
+

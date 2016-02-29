@@ -64,53 +64,5 @@ public class BundleUtils {
             return defaultKey == null ? null : defaultKey;
         }
     }
-    
-    public static String getLanguage(String key, Locale... locale) {
-        Locale mlocale = (Locale) VaadinSession.getCurrent().getSession().getAttribute("locale");
-        if (mlocale == null) {
-            Locale viVN = new Locale("vi-VN");
-            VaadinSession.getCurrent().getSession().setAttribute("locale", viVN);
-            mlocale = viVN;
-        }
-        try {
-            if (locale != null) {
-                if (locale.length == 0) {
-                    rsConfig = ResourceBundle.getBundle("language", mlocale);
-                } else {
-                    rsConfig = ResourceBundle.getBundle("language", locale[0]);
-                }
-            } else {
-                rsConfig = ResourceBundle.getBundle("language", mlocale);
-            }
-
-            return rsConfig.getString(key);
-        } catch (Exception e) {
-            return key;
-        }
-    }
-
-    public static String getLanguage(String key, String defaultKey, Locale... locale) {
-        Locale mlocale = (Locale) VaadinSession.getCurrent().getSession().getAttribute("locale");
-        if (mlocale == null) {
-            Locale viVN = new Locale("vi-VN");
-            VaadinSession.getCurrent().getSession().setAttribute("locale", viVN);
-            mlocale = viVN;
-        }
-        try {
-            if (locale != null) {
-                if (locale.length == 0) {
-                    rsConfig = ResourceBundle.getBundle("language", mlocale);
-                } else {
-                    rsConfig = ResourceBundle.getBundle("language", locale[0]);
-                }
-            } else {
-                rsConfig = ResourceBundle.getBundle("language", mlocale);
-            }
-
-            return rsConfig.getString(key);
-        } catch (Exception e) {
-            return defaultKey == null ? null : defaultKey;
-        }
-    }
 
 }

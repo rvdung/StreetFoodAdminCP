@@ -1,20 +1,18 @@
 
 /*
-* Copyright (C) 2011 dungnv. All rights reserved.
+* Copyright (C) 2011 Viettel Telecom. All rights reserved.
 * VIETTEL PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.dungnv.streetfood.service;
 
 import com.dungnv.streetfood.dto.ArticleDTO;
 import com.dungnv.streetfood.dto.CategoryDTO;
-import com.dungnv.streetfood.dto.DishDTO;
-import com.dungnv.streetfood.dto.LocaleDTO;
 import com.dungnv.streetfood.dto.ResultDTO;
-import com.dungnv.streetfood.dto.TagsDTO;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebParam;
 import javax.jws.WebMethod;
+
 
 /**
  * @author dungnv
@@ -49,7 +47,7 @@ public interface ClientService {
             , @WebParam(name = "countryCode") String countryCode//
             , @WebParam(name = "token") String token//
             , @WebParam(name = "categoryDTO") CategoryDTO categoryDTO);
-
+    
     @WebMethod(operationName = "updateCategory")
     public ResultDTO updateCategory(@WebParam(name = "userName") String userName//
             , @WebParam(name = "localeCode") String localeCode//
@@ -63,70 +61,6 @@ public interface ClientService {
             , @WebParam(name = "countryCode") String countryCode//
             , @WebParam(name = "token") String token//
             , @WebParam(name = "categoryDTOId") String id);
-
-    @WebMethod(operationName = "getListCategoryDTOLess")
-    public List<CategoryDTO> getListCategoryDTOLess(//
-            @WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "categoryDTO") CategoryDTO categoryDTO//
-            , @WebParam(name = "rowStart") int rowStart//
-            , @WebParam(name = "maxRow") int maxRow//
-            , @WebParam(name = "isCount") boolean isCount//
-            , @WebParam(name = "sortType") String sortType//
-            , @WebParam(name = "sortFieldList") String sortFieldList);
-
-    @WebMethod(operationName = "getCategoryDetail")
-    public CategoryDTO getCategoryDetail(//
-            @WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "id") String id);
-
-    // Dish
-    @WebMethod(operationName = "insertDish")
-    public ResultDTO insertDish(@WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name="dishDTO") DishDTO dishDTO);
-    //
-    @WebMethod(operationName = "updateDish")
-    public ResultDTO updateDish(@WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "dishDTO") DishDTO dishDTO);
-    //
-    @WebMethod(operationName = "deleteDish")
-    public ResultDTO deleteDish(@WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "dishDTOId") Long id);
-    
-     @WebMethod(operationName = "getListDishDTOLess")
-    public List<DishDTO> getListDishDTOLess(//
-            @WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "dishDTO") DishDTO dishDTO//
-            , @WebParam(name = "rowStart") int rowStart//
-            , @WebParam(name = "maxRow") int maxRow//
-            , @WebParam(name = "isCount") boolean isCount//
-            , @WebParam(name = "sortType") String sortType//
-            , @WebParam(name = "sortFieldList") String sortFieldList);
-    
-    @WebMethod(operationName = "getDishDetail")
-    public DishDTO getDishDetail(//
-            @WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "id") String id);
     
     //User
     @WebMethod(operationName = "login")
@@ -134,30 +68,4 @@ public interface ClientService {
             , @WebParam(name = "localeCode") String localeCode//
             , @WebParam(name = "countryCode") String countryCode//
             , @WebParam(name = "password") String password);
-
-    // TAG
-    public List<TagsDTO> getListTagsDTO(//
-            @WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "tagsDTO") TagsDTO tagsDTO//
-            , @WebParam(name = "rowStart") int rowStart//
-            , @WebParam(name = "maxRow") int maxRow//
-            , @WebParam(name = "sortType") String sortType//
-            , @WebParam(name = "sortFieldList") String sortFieldList);
-
-    //Locale 
-    @WebMethod(operationName = "getListLocaleDTO")
-    public List<LocaleDTO> getListLocaleDTO(//
-            @WebParam(name = "userName") String userName//
-            , @WebParam(name = "localeCode") String localeCode//
-            , @WebParam(name = "countryCode") String countryCode//
-            , @WebParam(name = "token") String token//
-            , @WebParam(name = "localeDTO") LocaleDTO localeDTO//
-            , @WebParam(name = "rowStart") int rowStart//
-            , @WebParam(name = "maxRow") int maxRow//
-            , @WebParam(name = "sortType") String sortType//
-            , @WebParam(name = "sortFieldList") String sortFieldList);
-
 }

@@ -6,7 +6,6 @@
 package com.dungnv.streetfood.dto;
 
 import java.util.List;
-import java.util.Objects;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -113,48 +112,5 @@ public class ResultDTO {
     public void setQuantityFail(int quantityFail) {
         this.quantityFail = quantityFail;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.key);
-        hash = 29 * hash + Objects.hashCode(this.message);
-        hash = 29 * hash + this.quantitySucc;
-        hash = 29 * hash + this.quantityFail;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final ResultDTO other = (ResultDTO) obj;
-        if (this.quantitySucc != other.quantitySucc) {
-            return false;
-        }
-        if (this.quantityFail != other.quantityFail) {
-            return false;
-        }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
-        if (!Objects.equals(this.key, other.key)) {
-            return false;
-        }
-        if (!Objects.equals(this.message, other.message)) {
-            return false;
-        }
-        return true;
-    }
-    
-    
 
 }

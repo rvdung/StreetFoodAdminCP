@@ -5,8 +5,6 @@
  */
 package com.dungnv.ws.provider;
 
-import com.dungnv.streetfood.dto.UserDTO;
-import com.dungnv.utils.DateTimeUtils;
 import com.dungnv.utils.StringUtils;
 import com.vaadin.server.VaadinSession;
 import com.vaadin.ui.UI;
@@ -41,7 +39,7 @@ public class CxfWsClientOutInterceptor extends AbstractLoggingInterceptor {
     @Override
     public void handleMessage(Message message) {
         try {
-            UserDTO user = (UserDTO) VaadinSession.getCurrent().getSession().getAttribute("user");
+//            UserTokenGNOC user = (UserTokenGNOC) VaadinSession.getCurrent().getSession().getAttribute(Constants.vsaUserTokenAttribute);
             String id = (String) message.getExchange().get(LoggingMessage.ID_KEY);
             if (id == null) {
                 id = LoggingMessage.nextId();
@@ -63,8 +61,8 @@ public class CxfWsClientOutInterceptor extends AbstractLoggingInterceptor {
             }
 
             String log = "start_action|GNOC"
-                    + "|" + DateTimeUtils.convertDateToString(new Date(), "dd/MM/yyyy HH:mm:ss")
-                    + "|" + user.getUsername()
+//                    + "|" + DateTimeUtils.convertDateToString(new Date(), "dd/MM/yyyy HH:mm:ss")
+//                    + "|" + user.getUserName()
                     + "|" + UI.getCurrent().getPage().getWebBrowser().getAddress()
                     + "|" + UI.getCurrent().getPage().getLocation().getHost()
                     + ":" + UI.getCurrent().getPage().getLocation().getPort()

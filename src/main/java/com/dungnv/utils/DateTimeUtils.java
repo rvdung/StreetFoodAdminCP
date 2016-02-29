@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2010 dungnv. All rights reserved.
+ * Copyright (C) 2010 Viettel Telecom. All rights reserved.
  * VIETTEL PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
  */
 package com.dungnv.utils;
@@ -60,7 +60,6 @@ public final class DateTimeUtils {
 
     public static final String patternDateTime = "dd/MM/yyyy HH:mm";
     public static final String patternDateTimeMs = "dd/MM/yyyy HH:mm:ss";
-
     /**
      * private constructor
      */
@@ -177,8 +176,8 @@ public final class DateTimeUtils {
         String pattern = "dd/MM/yyyy HH:mm:ss";
         return convertStringToTime(date, pattern);
     }
-
-    public static Date convertStringDate(String date) throws Exception {
+    
+     public static Date convertStringDate(String date) throws Exception {
         String pattern = "dd/MM/yyyy";
         return convertStringToTime(date, pattern);
     }
@@ -198,7 +197,7 @@ public final class DateTimeUtils {
         }
     }
 
-    public static String convertDateTime(Date date) throws Exception {
+     public static String convertDateTime(Date date) throws Exception {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         try {
             return dateFormat.format(date);
@@ -206,7 +205,6 @@ public final class DateTimeUtils {
             throw e;
         }
     }
-
     /**
      *
      * @param utilDate to convert
@@ -278,8 +276,8 @@ public final class DateTimeUtils {
         }
         return result;
     }
-
-    public static int compareDateTimeNull(Date d1, Date d2) {
+    
+     public static int compareDateTimeNull(Date d1, Date d2) {
         if (d1 == null && d2 == null) {
             return 0;
         }
@@ -301,7 +299,7 @@ public final class DateTimeUtils {
         }
         return result;
     }
-
+    
     public static String convertDateTimeStampToString(Date date) throws Exception {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         try {
@@ -310,8 +308,8 @@ public final class DateTimeUtils {
             throw e;
         }
     }
-
-    public static long getTimeBeetweenDates(Date d1, Date d2, int timeType) {
+	
+	public static long getTimeBeetweenDates(Date d1, Date d2, int timeType) {
 
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
@@ -323,7 +321,7 @@ public final class DateTimeUtils {
             case Calendar.SECOND:
                 return (long) diff / 1000;
             case Calendar.MINUTE:
-                return (long) diff / (60 * 1000);
+                return (long) diff / (60 * 1000) ;
             case Calendar.HOUR:
                 return (long) diff / (60 * 60 * 1000);
             case Calendar.DATE:
@@ -337,7 +335,7 @@ public final class DateTimeUtils {
         try {
             Date date1 = convertStringToTime("22/08/2015 09:17:00", "dd/MM/yyyy HH:mm:ss");
             Date date2 = convertStringToTime("22/08/2015 10:17:00", "dd/MM/yyyy HH:mm:ss");
-            System.out.println(getTimeBeetweenDates(date1, date2, Calendar.MINUTE));
+            System.out.println(getTimeBeetweenDates(date1, date2 , Calendar.MINUTE));
         } catch (Exception e) {
         }
 
