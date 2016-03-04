@@ -17,7 +17,7 @@ import com.dungnv.domain.Movie;
 public class TopGrossingMoviesChart extends Chart {
 
     public TopGrossingMoviesChart() {
-        setCaption("Top Grossing Movies");
+        setCaption("Top các món ăn được bình chọn nhiều nhất");
         getConfiguration().setTitle("");
         getConfiguration().getChart().setType(ChartType.BAR);
         getConfiguration().getChart().setAnimation(false);

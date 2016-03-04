@@ -88,9 +88,9 @@ public class CategoryInsert extends Window implements WizardProgressListener {
         wizard.addListener(this);
         ((HorizontalLayout) wizard.getFinishButton().findAncestor(HorizontalLayout.class)).setMargin(new MarginInfo(true, false, true, true));
         if (Constants.ACTION.INSERT.equals(action)) {
-            wizard.addStep(new IntroStep(), "Thêm mới nhóm món ăn");
+            wizard.addStep(new IntroStep(), BundleUtils.getLanguage("lbl.category.insert"));
         } else if (Constants.ACTION.UPDATE.equals(action)) {
-            wizard.addStep(new IntroStep(), "Cập nhật thông tin nhóm món ăn");
+            wizard.addStep(new IntroStep(), BundleUtils.getLanguage("lbl.category.update"));
         }
         wizard.addStep(new SecondStep(), "intro");
 
@@ -132,7 +132,8 @@ public class CategoryInsert extends Window implements WizardProgressListener {
             view.onSearch(Boolean.TRUE);
             UI.getCurrent().removeWindow(event.getWizard().findAncestor(Window.class));
         } else {
-            Notification.show(result.getMessage(), Notification.Type.ERROR_MESSAGE);
+            Notification.show(result == null || result.getKey() == null ? Constants.FAIL
+                            : result.getKey(), Notification.Type.ERROR_MESSAGE);
         }
     }
 
@@ -155,9 +156,9 @@ public class CategoryInsert extends Window implements WizardProgressListener {
         @Override
         public String getCaption() {
             if (StringUtils.isNullOrEmpty(dto.getId())) {
-                return "Thêm mới nhóm món ăn";
+                return BundleUtils.getLanguage("lbl.category.insert");
             } else {
-                return "Cập nhật thông tin nhóm món ăn";
+                return BundleUtils.getLanguage("lbl.category.update");
             }
         }
 
@@ -194,7 +195,7 @@ public class CategoryInsert extends Window implements WizardProgressListener {
             tfDescription.setWidth(100.0f, Unit.PERCENTAGE);
             formLayout.addComponent(tfDescription);
 
-            ogStatus = new OptionGroup("lbl.status");
+            ogStatus = new OptionGroup(BundleUtils.getLanguage("lbl.status"));
             ogStatus.addItem(BundleUtils.getLanguage("lbl.active"));
             ogStatus.addItem(BundleUtils.getLanguage("lbl.inActive"));
             ogStatus.addStyleName("horizontal");
@@ -296,7 +297,7 @@ public class CategoryInsert extends Window implements WizardProgressListener {
 
         @Override
         public String getCaption() {
-            return "Nhập thông tin ngôn ngữ";
+            return BundleUtils.getLanguage("lbl.language.update");
         }
 
         @Override

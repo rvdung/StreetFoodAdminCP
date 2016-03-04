@@ -89,19 +89,19 @@ public final class DashboardView extends Panel implements View,
         sparks.setWidth("100%");
         Responsive.makeResponsive(sparks);
 
-        SparklineChart s = new SparklineChart("Traffic", "K", "",
+        SparklineChart s = new SparklineChart("Truy cập / ngày", "K", "",
                 DummyDataGenerator.chartColors[0], 22, 20, 80);
         sparks.addComponent(s);
 
-        s = new SparklineChart("Revenue / Day", "M", "$",
+        s = new SparklineChart("Tổng lượng truy cập", "M", "$",
                 DummyDataGenerator.chartColors[2], 8, 89, 150);
         sparks.addComponent(s);
 
-        s = new SparklineChart("Checkout Time", "s", "",
+        s = new SparklineChart("Số thành viên đăng nhập trong ngày", "s", "",
                 DummyDataGenerator.chartColors[3], 10, 30, 120);
         sparks.addComponent(s);
 
-        s = new SparklineChart("Theater Fill Rate", "%", "",
+        s = new SparklineChart("Số lượng thành viên đăng nhập so với hôm qua", "%", "",
                 DummyDataGenerator.chartColors[5], 50, 34, 100);
         sparks.addComponent(s);
 

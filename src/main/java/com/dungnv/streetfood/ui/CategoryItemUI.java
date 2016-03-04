@@ -10,6 +10,7 @@ import com.dungnv.streetfood.dto.ResultDTO;
 import com.dungnv.streetfood.dto.UserDTO;
 import com.dungnv.streetfood.service.ClientServiceImpl;
 import com.dungnv.streetfood.view.CategoryInsert;
+import com.dungnv.streetfood.view.CategoryLink;
 import com.dungnv.streetfood.view.CategoryView;
 import com.dungnv.utils.BundleUtils;
 import com.dungnv.utils.Constants;
@@ -42,6 +43,7 @@ public class CategoryItemUI extends VerticalLayout {
     private CategoryDTO item;
     private Button btnLock;
     private Button btnEdit;
+    private Button btnLink;
     private Button btnDelete;
     CategoryView mainView;
 
@@ -108,6 +110,15 @@ public class CategoryItemUI extends VerticalLayout {
         htToolBar.addComponent(btnLock);
         htToolBar.setComponentAlignment(btnLock, Alignment.BOTTOM_RIGHT);
 
+        btnLink = new Button();
+        btnLink.setIcon(FontAwesome.LINK);
+        btnLink.addStyleName(ValoTheme.BUTTON_ICON_ONLY);
+        btnLink.addStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
+        btnLink.setWidth("25px");
+        btnLink.setHeight("25px");
+        htToolBar.addComponent(btnLink);
+        htToolBar.setComponentAlignment(btnLink, Alignment.BOTTOM_RIGHT);
+
         btnEdit = new Button();
         btnEdit.setIcon(FontAwesome.EDIT);
         btnEdit.addStyleName(ValoTheme.BUTTON_ICON_ONLY);
@@ -141,6 +152,17 @@ public class CategoryItemUI extends VerticalLayout {
                 UI.getCurrent().addWindow(CategoryInsert);
             }
         });
+        
+        btnLink.addClickListener((Button.ClickEvent event) -> {
+            if (item != null) {
+                CategoryLink CategoryInsert = new CategoryLink(item);
+                CategoryInsert.setWidth("80%");
+                CategoryInsert.setHeight("75%");
+                CategoryInsert.setModal(true);
+                FWUtils.reloadWindow(CategoryInsert);
+                UI.getCurrent().addWindow(CategoryInsert);
+            }
+        });
 
         btnDelete.addClickListener((Button.ClickEvent event) -> {
             ConfirmDialog.show(UI.getCurrent(), BundleUtils.getLanguage("lbl.confirm")//
@@ -156,7 +178,8 @@ public class CategoryItemUI extends VerticalLayout {
                                 mainView.onSearch(Boolean.TRUE);
                                 UI.getCurrent().removeWindow(event.getButton().findAncestor(Window.class));
                             } else {
-                                Notification.show(result.getMessage(), Notification.Type.ERROR_MESSAGE);
+                                Notification.show(result == null || result.getKey() == null ? Constants.FAIL
+                            : result.getKey(), Notification.Type.ERROR_MESSAGE);
                             }
                         }
                     });

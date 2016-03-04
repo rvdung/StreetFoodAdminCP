@@ -101,7 +101,7 @@ public final class CategoryView extends Panel implements View {
                 , getLocale().getLanguage(), getLocale().getCountry(), null, dtoSearch,
                 (startRow - 1) * recPerPage, recPerPage, false, null, null);
         if (list != null && !list.isEmpty()) {
-             uiSearchPaged.setVisible(true);
+            uiSearchPaged.setVisible(true);
             for (int i = 0; i < list.size(); i++) {
                 CategoryItemUI ui = new CategoryItemUI(list.get(i), this);
                 if (i == list.size() - 1) {
@@ -148,14 +148,14 @@ public final class CategoryView extends Panel implements View {
         txtSearch.setTextChangeEventMode(TextChangeEventMode.TIMEOUT);
         txtSearch.setIcon(FontAwesome.SEARCH);
         txtSearch.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
-        txtSearch.setInputPrompt("nhập tên món ăn");
+        txtSearch.setInputPrompt(BundleUtils.getLanguage("lbl.category.name.input"));
         txtSearch.setWidth("100%");
 
         item.addComponent(txtSearch);
         item.setComponentAlignment(txtSearch, Alignment.TOP_RIGHT);
 
         lbAdvanced = new Button();
-        lbAdvanced.setCaption("Advanced");
+        lbAdvanced.setCaption(BundleUtils.getLanguage("lbl.search.advanced"));
         lbAdvanced.addStyleName(ValoTheme.BUTTON_LINK);
         lbAdvanced.addStyleName(ValoTheme.BUTTON_LARGE);
         item.addComponent(lbAdvanced);
@@ -183,7 +183,7 @@ public final class CategoryView extends Panel implements View {
                 });
             }
         };
-        
+
         header.addComponent(uiSearchPaged);
 
         searchLayout = new VerticalLayout();
@@ -196,13 +196,10 @@ public final class CategoryView extends Panel implements View {
 
     private void builAction() {
 
-        txtSearch.addTextChangeListener(new FieldEvents.TextChangeListener() {
-            @Override
-            public void textChange(FieldEvents.TextChangeEvent event) {
-                dtoSearch = new CategoryDTO();
-                dtoSearch.setName(event.getText());
-                onSearch(Boolean.TRUE);
-            }
+        txtSearch.addTextChangeListener((FieldEvents.TextChangeEvent event) -> {
+            dtoSearch = new CategoryDTO();
+            dtoSearch.setName(event.getText());
+            onSearch(Boolean.TRUE);
         });
 
         lbAdvanced.addClickListener((Button.ClickEvent event) -> {
@@ -214,8 +211,7 @@ public final class CategoryView extends Panel implements View {
         });
 
         btnAdd.addClickListener((Button.ClickEvent event) -> {
-            CategoryInsert CategoryInsert = new CategoryInsert(null, event.getButton().findAncestor(CategoryView.class)
-                    , Constants.ACTION.INSERT);
+            CategoryInsert CategoryInsert = new CategoryInsert(null, event.getButton().findAncestor(CategoryView.class), Constants.ACTION.INSERT);
             CategoryInsert.setWidth("80%");
             CategoryInsert.setHeight("90%");
             CategoryInsert.setModal(true);

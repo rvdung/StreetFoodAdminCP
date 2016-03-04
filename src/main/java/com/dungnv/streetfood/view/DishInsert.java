@@ -29,7 +29,6 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.OptionGroup;
-import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.TabSheet;
 import com.vaadin.ui.TabSheet.Tab;
 import com.vaadin.ui.TextArea;
@@ -37,12 +36,10 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import com.vaadin.ui.themes.ValoTheme;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.vaadin.maddon.label.RichText;
 import org.vaadin.teemu.wizards.Wizard;
 import org.vaadin.teemu.wizards.WizardStep;
 import org.vaadin.teemu.wizards.event.WizardCancelledEvent;
@@ -93,9 +90,9 @@ public class DishInsert extends Window implements WizardProgressListener {
         wizard.addListener(this);
         ((HorizontalLayout) wizard.getFinishButton().findAncestor(HorizontalLayout.class)).setMargin(new MarginInfo(true, false, true, true));
         if (Constants.ACTION.INSERT.equals(action)) {
-            wizard.addStep(new IntroStep(), "Thêm mới nhóm món ăn");
+            wizard.addStep(new IntroStep(), BundleUtils.getLanguage("lbl.dish.insert"));
         } else if (Constants.ACTION.UPDATE.equals(action)) {
-            wizard.addStep(new IntroStep(), "Cập nhật thông tin nhóm món ăn");
+            wizard.addStep(new IntroStep(), BundleUtils.getLanguage("lbl.dish.update"));
         }
         wizard.addStep(new SecondStep(), "intro");
 
@@ -137,7 +134,8 @@ public class DishInsert extends Window implements WizardProgressListener {
             view.onSearch(Boolean.TRUE);
             UI.getCurrent().removeWindow(event.getWizard().findAncestor(Window.class));
         } else {
-            Notification.show(result.getMessage(), Notification.Type.ERROR_MESSAGE);
+            Notification.show(result == null || result.getKey() == null ? Constants.FAIL
+                            : result.getKey(), Notification.Type.ERROR_MESSAGE);
         }
     }
 
@@ -161,9 +159,9 @@ public class DishInsert extends Window implements WizardProgressListener {
         @Override
         public String getCaption() {
             if (StringUtils.isNullOrEmpty(dto.getId())) {
-                return "Thêm mới nhóm món ăn";
+                return BundleUtils.getLanguage("lbl.dish.insert");
             } else {
-                return "Cập nhật thông tin nhóm món ăn";
+                return BundleUtils.getLanguage("lbl.dish.update");
             }
         }
 
@@ -187,26 +185,26 @@ public class DishInsert extends Window implements WizardProgressListener {
             formLayout.setSpacing(true);
             vLayout.addComponent(formLayout);
 
-            tfName = new TextField(BundleUtils.getLanguage("lbl.category.name"));
+            tfName = new TextField(BundleUtils.getLanguage("lbl.dish.name"));
             tfName.setWidth(100.0f, Unit.PERCENTAGE);
             tfName.setRequired(true);
             formLayout.addComponent(tfName);
 
-            tfImageUrl = new InsertImageUI(BundleUtils.getLanguage("lbl.category.imageUrl"), true);
+            tfImageUrl = new InsertImageUI(BundleUtils.getLanguage("lbl.dish.imageUrl"), true);
             tfImageUrl.setWidth(100.0f, Unit.PERCENTAGE);
 //            tfImageUrl.setRequired(true);
             formLayout.addComponent(tfImageUrl);
 
-            tfShortDescription = new TextArea(BundleUtils.getLanguage("lbl.shortDescription"));
+            tfShortDescription = new TextArea(BundleUtils.getLanguage("lbl.dish.shortDescription"));
             tfShortDescription.setWidth(100.0f, Unit.PERCENTAGE);
             formLayout.addComponent(tfShortDescription);
 
-            tfLongDescription = new RichTextWinDowUI(BundleUtils.getLanguage("lbl.longDescription"));
+            tfLongDescription = new RichTextWinDowUI(BundleUtils.getLanguage("lbl.dish.longDescription"));
             tfLongDescription.setWidth(100.0f, Unit.PERCENTAGE);
 //            tfLongDescription.setHeight("300px");
             formLayout.addComponent(tfLongDescription);
 
-            ogStatus = new OptionGroup("lbl.status");
+            ogStatus = new OptionGroup(BundleUtils.getLanguage("lbl.status"));
             ogStatus.addItem(BundleUtils.getLanguage("lbl.active"));
             ogStatus.addItem(BundleUtils.getLanguage("lbl.inActive"));
             ogStatus.addStyleName("horizontal");
@@ -310,7 +308,7 @@ public class DishInsert extends Window implements WizardProgressListener {
 
         @Override
         public String getCaption() {
-            return "Nhập thông tin ngôn ngữ";
+            return BundleUtils.getLanguage("lbl.language.update");
         }
 
         @Override

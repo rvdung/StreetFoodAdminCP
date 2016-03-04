@@ -44,7 +44,7 @@ import com.vaadin.ui.themes.ValoTheme;
  * A responsive menu component providing user information and the controls for
  * primary navigation between the views.
  */
-@SuppressWarnings({"serial", "unchecked"})
+@SuppressWarnings({ "serial", "unchecked" })
 public final class DashboardMenu extends CustomComponent {
 
     public static final String ID = "dashboard-menu";
@@ -85,7 +85,7 @@ public final class DashboardMenu extends CustomComponent {
     }
 
     private Component buildTitle() {
-        Label logo = new Label("QuickTickets <strong>Dashboard</strong>",
+        Label logo = new Label("<strong>StreetFood</strong> AdminCP",
                 ContentMode.HTML);
         logo.setSizeUndefined();
         HorizontalLayout logoWrapper = new HorizontalLayout(logo);
@@ -242,7 +242,7 @@ public final class DashboardMenu extends CustomComponent {
     @Subscribe
     public void updateUserName(final ProfileUpdatedEvent event) {
         UserDTO user = getCurrentUser();
-        settingsItem.setText(user.getFistname() + " " + user.getLastname());
+        settingsItem.setText(user.getFistname()+ " " + user.getLastname());
     }
 
     public final class ValoMenuItemButton extends Button {

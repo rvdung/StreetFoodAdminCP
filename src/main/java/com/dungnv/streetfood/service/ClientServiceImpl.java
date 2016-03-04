@@ -9,7 +9,9 @@ import com.dungnv.streetfood.dto.ArticleDTO;
 import com.dungnv.streetfood.dto.CategoryDTO;
 import com.dungnv.streetfood.dto.DishDTO;
 import com.dungnv.streetfood.dto.LocaleDTO;
+import com.dungnv.streetfood.dto.RestaurantDTO;
 import com.dungnv.streetfood.dto.ResultDTO;
+import com.dungnv.streetfood.dto.SlideShowDTO;
 import com.dungnv.streetfood.dto.TagsDTO;
 import com.dungnv.streetfood.dto.UserDTO;
 import com.dungnv.utils.BundleUtils;
@@ -74,36 +76,6 @@ public class ClientServiceImpl implements ClientService {
             ex.printStackTrace();
             logger.error(ex);
         }
-    }
-
-    @Override
-    public List<ArticleDTO> getListArticleDTO(ArticleDTO articleDTO, int rowStart, int maxRow, String sortType, String sortFieldList) {
-        return client.getListArticleDTO(articleDTO, rowStart, maxRow, sortType, sortFieldList);
-    }
-
-    @Override
-    public String updateArticle(String username, ArticleDTO articleDTO) {
-        return client.updateArticle(username, articleDTO);
-    }
-
-    @Override
-    public String deleteArticle(String username, Long id) {
-        return client.deleteArticle(username, id);
-    }
-
-    @Override
-    public ResultDTO insertArticle(String username, ArticleDTO articleDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArticleDTO findArticleById(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String insertOrUpdateListArticle(List<ArticleDTO> articleDTO) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -211,6 +183,137 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public DishDTO getDishDetail(String userName, String localeCode, String countryCode, String token, String id) {
         return client.getDishDetail(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public ResultDTO insertArticle(String userName, String localeCode//
+            , String countryCode, String token, ArticleDTO articleDTO) {
+        return client.insertArticle(userName, localeCode, countryCode, token, articleDTO);
+    }
+
+    @Override
+    public ResultDTO updateArticle(String userName, String localeCode//
+            , String countryCode, String token, ArticleDTO articleDTO) {
+        return client.updateArticle(userName, localeCode, countryCode, token, articleDTO);
+    }
+
+    @Override
+    public ResultDTO deleteArticle(String userName, String localeCode//
+            , String countryCode, String token, Long id) {
+        return client.deleteArticle(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public List<ArticleDTO> getListArticleDTOLess(String userName, String localeCode, String countryCode, String token//
+            , ArticleDTO articleDTO, int rowStart, int maxRow, boolean isCount, String sortType, String sortFieldList) {
+        return client.getListArticleDTOLess(userName, localeCode, countryCode//
+                , token, articleDTO, rowStart, maxRow, isCount, sortType, sortFieldList);
+    }
+
+    @Override
+    public ArticleDTO getArticleDetail(String userName, String localeCode, String countryCode, String token, String id) {
+        return client.getArticleDetail(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public ResultDTO insertRestaurant(String userName, String localeCode//
+            , String countryCode, String token, RestaurantDTO restaurantDTO) {
+        return client.insertRestaurant(userName, localeCode, countryCode, token, restaurantDTO);
+    }
+
+    @Override
+    public ResultDTO updateRestaurant(String userName, String localeCode//
+            , String countryCode, String token, RestaurantDTO restaurantDTO) {
+        return client.updateRestaurant(userName, localeCode, countryCode, token, restaurantDTO);
+    }
+
+    @Override
+    public ResultDTO deleteRestaurant(String userName, String localeCode//
+            , String countryCode, String token, Long id) {
+        return client.deleteRestaurant(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public List<RestaurantDTO> getListRestaurantDTOLess(String userName, String localeCode, String countryCode, String token//
+            , RestaurantDTO restaurantDTO, int rowStart, int maxRow, boolean isCount, String sortType, String sortFieldList) {
+        return client.getListRestaurantDTOLess(userName, localeCode, countryCode//
+                , token, restaurantDTO, rowStart, maxRow, isCount, sortType, sortFieldList);
+    }
+
+    @Override
+    public RestaurantDTO getRestaurantDetail(String userName, String localeCode, String countryCode, String token, String id) {
+        return client.getRestaurantDetail(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public ResultDTO insertSlideShow(String userName, String localeCode//
+            , String countryCode, String token, SlideShowDTO slideShowDTO) {
+        return client.insertSlideShow(userName, localeCode, countryCode, token, slideShowDTO);
+    }
+
+    @Override
+    public ResultDTO updateSlideShow(String userName, String localeCode//
+            , String countryCode, String token, SlideShowDTO slideShowDTO) {
+        return client.updateSlideShow(userName, localeCode, countryCode, token, slideShowDTO);
+    }
+
+    @Override
+    public ResultDTO deleteSlideShow(String userName, String localeCode//
+            , String countryCode, String token, Long id) {
+        return client.deleteSlideShow(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public List<SlideShowDTO> getListSlideShowDTOLess(String userName, String localeCode, String countryCode, String token//
+            , SlideShowDTO slideShowDTO, int rowStart, int maxRow, boolean isCount, String sortType, String sortFieldList) {
+        return client.getListSlideShowDTOLess(userName, localeCode, countryCode//
+                , token, slideShowDTO, rowStart, maxRow, isCount, sortType, sortFieldList);
+    }
+
+    @Override
+    public SlideShowDTO getSlideShowDetail(String userName, String localeCode, String countryCode, String token, String id) {
+        return client.getSlideShowDetail(userName, localeCode, countryCode, token, id);
+    }
+
+    @Override
+    public ResultDTO insertListDishToCategory(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListDishToCategory(userName, localeCode, countryCode, token, id, list);
+    }
+
+    @Override
+    public ResultDTO insertListCategoryToDish(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListCategoryToDish(userName, localeCode, countryCode, token, id, list);
+    }
+
+    @Override
+    public ResultDTO insertListDishToArticle(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListDishToArticle(userName, localeCode, countryCode, token, id, list);
+    }
+
+    @Override
+    public ResultDTO insertListArticleToDish(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListArticleToDish(userName, localeCode, countryCode, token, id, list);
+    }
+
+    @Override
+    public ResultDTO insertListDishToRestaurant(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListDishToRestaurant(userName, localeCode, countryCode, token, id, list);
+    }
+
+    @Override
+    public ResultDTO insertListRestaurantToDish(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListRestaurantToDish(userName, localeCode, countryCode, token, id, list);
+    }
+    
+    
+    @Override
+    public ResultDTO insertListRestaurantToArticle(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListRestaurantToArticle(userName, localeCode, countryCode, token, id, list);
+    }
+
+    @Override
+    public ResultDTO insertListArticleToRestaurant(String userName, String localeCode, String countryCode, String token, String id, List<String> list) {
+        return client.insertListArticleToRestaurant(userName, localeCode, countryCode, token, id, list);
     }
 
 }

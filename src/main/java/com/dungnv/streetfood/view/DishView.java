@@ -121,9 +121,9 @@ public class DishView extends Panel implements View {
         header.setSpacing(true);
         header.setId("hehehe");
 
-        titleLabel = new Label(BundleUtils.getLanguage("menu.CATEGORY"));
+        titleLabel = new Label(BundleUtils.getLanguage("menu.DISH"));
         titleLabel.setId(TITLE_ID);
-        titleLabel.setWidth("100%");
+        titleLabel.setWidth("100%"); 
         titleLabel.addStyleName(ValoTheme.LABEL_BOLD);
         header.addComponent(titleLabel);
 
@@ -131,9 +131,6 @@ public class DishView extends Panel implements View {
         btnAdd.setCaption(FontAwesome.PLUS_CIRCLE.getLabel().setSize3x().getCssHtml());
         btnAdd.setCaptionAsHtml(true);
         btnAdd.addStyleName("float-button");
-//        add.addStyleName(ValoTheme.BUTTON_BORDERLESS);
-//        add.addStyleName(ValoTheme.BUTTON_ICON_ONLY);
-//        add.addStyleName(ValoTheme.BUTTON_LARGE);
         header.addComponent(btnAdd);
 
         HorizontalLayout item = new HorizontalLayout();
@@ -147,14 +144,14 @@ public class DishView extends Panel implements View {
         txtSearch.setTextChangeEventMode(AbstractTextField.TextChangeEventMode.TIMEOUT);
         txtSearch.setIcon(FontAwesome.SEARCH);
         txtSearch.addStyleName(ValoTheme.TEXTFIELD_INLINE_ICON);
-        txtSearch.setInputPrompt("nhập tên món ăn");
+        txtSearch.setInputPrompt(BundleUtils.getLanguage("lbl.dish.name.input"));
         txtSearch.setWidth("100%");
 
         item.addComponent(txtSearch);
         item.setComponentAlignment(txtSearch, Alignment.TOP_RIGHT);
 
         lbAdvanced = new Button();
-        lbAdvanced.setCaption("Advanced");
+        lbAdvanced.setCaption(BundleUtils.getLanguage("lbl.search.advanced"));
         lbAdvanced.addStyleName(ValoTheme.BUTTON_LINK);
         lbAdvanced.addStyleName(ValoTheme.BUTTON_LARGE);
         item.addComponent(lbAdvanced);

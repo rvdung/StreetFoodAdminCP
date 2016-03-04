@@ -222,6 +222,18 @@
                     <artifactId>wizards-for-vaadin</artifactId>
                     <version>1.1.0</version>
                  </dependency>
+                 
+                 <dependency>
+                    <groupId>org.vaadin.addons</groupId>
+                    <artifactId>timefield</artifactId>
+                    <version>0.9</version>
+                 </dependency>
+                 
+                 <dependency>
+                    <groupId>org.vaadin.addons</groupId>
+                    <artifactId>csvalidation</artifactId>
+                    <version>0.5.6</version>
+                 </dependency>
 	 <dependency>
 	  <groupId>com.google.code.gson</groupId>
 	  <artifactId>gson</artifactId>

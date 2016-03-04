@@ -27,7 +27,7 @@ import com.vaadin.ui.themes.ValoTheme;
 
 @Theme("dashboard")
 @Widgetset("com.dungnv.main.DashboardWidgetSet")
-@Title("QuickTickets Dashboard")
+@Title("StreetFood AdminCP")
 @SuppressWarnings("serial")
 public final class DashboardUI extends UI {
 

@@ -178,6 +178,15 @@ public final class DateTimeUtils {
         return convertStringToTime(date, pattern);
     }
 
+    public static Date convertStringToDateTimeNotException(String date) {
+        String pattern = "dd/MM/yyyy HH:mm:ss";
+        try {
+            return convertStringToTime(date, pattern);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public static Date convertStringDate(String date) throws Exception {
         String pattern = "dd/MM/yyyy";
         return convertStringToTime(date, pattern);
@@ -302,13 +311,9 @@ public final class DateTimeUtils {
         return result;
     }
 
-    public static String convertDateTimeStampToString(Date date) throws Exception {
+    public static String convertDateTimeStampToString(Date date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        try {
-            return dateFormat.format(date);
-        } catch (Exception e) {
-            throw e;
-        }
+        return date == null ? null : dateFormat.format(date);
     }
 
     public static long getTimeBeetweenDates(Date d1, Date d2, int timeType) {

@@ -25,13 +25,14 @@
 			class="com.vaadin.client.metadata.ConnectorBundleLoader" />
 	</generate-with>
 
-    <inherits name="com.vaadin.addon.charts.Widgetset" />
-
     <inherits name="com.vaadin.addon.timeline.gwt.TimelineWidgetSet" />
-
-    
 
     <inherits name="org.vaadin.activelink.ActivelinkWidgetset" />
 
     <inherits name="org.vaadin.suggestfield.WidgetSet" />
+
+    <inherits name="org.vaadin.csvalidation.widgetset.CSValidationWidgetset" />
+    
+    <inherits name="com.vaadin.addon.charts.Widgetset" />
+
 </module>

@@ -31,14 +31,19 @@ public class DishDTO {
 
     protected String defaultSortField;
 
+    private String categoryId;
+    private String notCategoryId;
+    private String restaurantId;
+    private String notRestaurantId;
+    private String articleId;
+    private String notArticleId;
+    private String isGetOnlyIdentified;
     private List<CategoryDTO> listCategory;
     private List<DishLanguageDTO> listLanguage;
     private List<String> listTag;
     private List<String> listImgUrl;
     private String imageId;
     private String imageUrl;
-    
-    
 
     //Constructor
     public DishDTO() {
@@ -60,6 +65,61 @@ public class DishDTO {
         this.rating = rating;
     }
     //Getters and setters
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public String getNotRestaurantId() {
+        return notRestaurantId;
+    }
+
+    public void setNotRestaurantId(String notRestaurantId) {
+        this.notRestaurantId = notRestaurantId;
+    }
+    public String getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
+    }
+
+    public String getNotArticleId() {
+        return notArticleId;
+    }
+
+    public void setNotArticleId(String notArticleId) {
+        this.notArticleId = notArticleId;
+    }
+
+    public String getIsGetOnlyIdentified() {
+        return isGetOnlyIdentified;
+    }
+
+    public void setIsGetOnlyIdentified(String isGetOnlyIdentified) {
+        this.isGetOnlyIdentified = isGetOnlyIdentified;
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getNotCategoryId() {
+        return notCategoryId;
+    }
+
+    public void setNotCategoryId(String notCategoryId) {
+        this.notCategoryId = notCategoryId;
+    }
 
     public String getDefaultSortField() {
         return defaultSortField;

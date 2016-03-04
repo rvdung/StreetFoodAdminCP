@@ -378,4 +378,5 @@ public final class StringUtils {
         }
         return org.apache.commons.codec.binary.StringUtils.newStringUtf8(Base64.decodeBase64(source));
     }
+
 }

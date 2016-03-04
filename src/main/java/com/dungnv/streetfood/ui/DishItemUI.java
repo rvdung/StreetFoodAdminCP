@@ -9,7 +9,9 @@ import com.dungnv.streetfood.dto.DishDTO;
 import com.dungnv.streetfood.dto.ResultDTO;
 import com.dungnv.streetfood.dto.UserDTO;
 import com.dungnv.streetfood.service.ClientServiceImpl;
+import com.dungnv.streetfood.view.CategoryLink;
 import com.dungnv.streetfood.view.DishInsert;
+import com.dungnv.streetfood.view.DishLink;
 import com.dungnv.streetfood.view.DishView;
 import com.dungnv.utils.BundleUtils;
 import com.dungnv.utils.Constants;
@@ -42,6 +44,7 @@ public class DishItemUI extends VerticalLayout {
     private DishDTO item;
     private Button btnLock;
     private Button btnEdit;
+    private Button btnLink;
     private Button btnDelete;
     DishView mainView;
     Label lbTitle;
@@ -54,7 +57,7 @@ public class DishItemUI extends VerticalLayout {
         this.item = item == null ? new DishDTO() : item;
         this.itemId = this.item.getId();
         init();
-        buildAction();
+        buildAction(); 
     }
 
     private void init() {
@@ -113,6 +116,15 @@ public class DishItemUI extends VerticalLayout {
         htToolBar.addComponent(btnLock);
         htToolBar.setComponentAlignment(btnLock, Alignment.BOTTOM_RIGHT);
 
+        btnLink = new Button();
+        btnLink.setIcon(FontAwesome.LINK);
+        btnLink.addStyleName(ValoTheme.BUTTON_ICON_ONLY);
+        btnLink.addStyleName(ValoTheme.BUTTON_BORDERLESS_COLORED);
+        btnLink.setWidth("25px");
+        btnLink.setHeight("25px");
+        htToolBar.addComponent(btnLink);
+        htToolBar.setComponentAlignment(btnLink, Alignment.BOTTOM_RIGHT);
+
         btnEdit = new Button();
         btnEdit.setIcon(FontAwesome.EDIT);
         btnEdit.addStyleName(ValoTheme.BUTTON_ICON_ONLY);
@@ -146,7 +158,7 @@ public class DishItemUI extends VerticalLayout {
             Integer rating = Integer.valueOf(item.getRating());
             for (int i = 0; i < 5; i++) {
                 if (i < rating) {
-                    info += "<span style=\"color:#197DE1; padding-right:5px;\">" + FontAwesome.STAR.getHtml() +"</span>";
+                    info += "<span style=\"color:#197DE1; padding-right:5px;\">" + FontAwesome.STAR.getHtml() + "</span>";
                 } else {
                     info += FontAwesome.STAR_O.getHtml();
                 }
@@ -186,6 +198,17 @@ public class DishItemUI extends VerticalLayout {
             }
         });
 
+        btnLink.addClickListener((Button.ClickEvent event) -> {
+            if (item != null) {
+                DishLink dishLink = new DishLink(item);
+                dishLink.setWidth("80%");
+                dishLink.setHeight("75%");
+                dishLink.setModal(true);
+                FWUtils.reloadWindow(dishLink);
+                UI.getCurrent().addWindow(dishLink);
+            }
+        });
+
         btnDelete.addClickListener((Button.ClickEvent event) -> {
             ConfirmDialog.show(UI.getCurrent(), BundleUtils.getLanguage("lbl.confirm")//
                     , BundleUtils.getLanguage("message.category.delete.confirm")//
@@ -200,7 +223,8 @@ public class DishItemUI extends VerticalLayout {
                                 mainView.onSearch(Boolean.TRUE);
                                 UI.getCurrent().removeWindow(event.getButton().findAncestor(Window.class));
                             } else {
-                                Notification.show(result.getMessage(), Notification.Type.ERROR_MESSAGE);
+                                Notification.show(result == null || result.getKey() == null ? Constants.FAIL
+                                        : result.getKey(), Notification.Type.ERROR_MESSAGE);
                             }
                         }
                     });
