@@ -9,7 +9,6 @@ import com.dungnv.streetfood.dto.DishDTO;
 import com.dungnv.streetfood.dto.ResultDTO;
 import com.dungnv.streetfood.dto.UserDTO;
 import com.dungnv.streetfood.service.ClientServiceImpl;
-import com.dungnv.streetfood.view.CategoryLink;
 import com.dungnv.streetfood.view.DishInsert;
 import com.dungnv.streetfood.view.DishLink;
 import com.dungnv.streetfood.view.DishView;
@@ -57,7 +56,7 @@ public class DishItemUI extends VerticalLayout {
         this.item = item == null ? new DishDTO() : item;
         this.itemId = this.item.getId();
         init();
-        buildAction(); 
+        buildAction();
     }
 
     private void init() {
@@ -152,34 +151,25 @@ public class DishItemUI extends VerticalLayout {
             lbTitle.addStyleName("lb-status-inActive");
         }
 
-        String info = "";
-
-        if (!StringUtils.isNullOrEmpty(item.getRating())) {
-            Integer rating = Integer.valueOf(item.getRating());
-            for (int i = 0; i < 5; i++) {
-                if (i < rating) {
-                    info += "<span style=\"color:#197DE1; padding-right:5px;\">" + FontAwesome.STAR.getHtml() + "</span>";
-                } else {
-                    info += FontAwesome.STAR_O.getHtml();
-                }
-            }
-        }
-
-        if (!StringUtils.isNullOrEmpty(item.getViewCount())) {
-            info += StringUtils.isNullOrEmpty(item.getViewCount())
-                    ? FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount()
-                    : "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount();
-        }
-        if (!StringUtils.isNullOrEmpty(item.getCommentCount())) {
-            info += StringUtils.isNullOrEmpty(item.getCommentCount())
-                    ? FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getCommentCount()
-                    : "&nbsp|" + FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getCommentCount();
-        }
-        if (!StringUtils.isNullOrEmpty(item.getShareCount())) {
-            info += StringUtils.isNullOrEmpty(item.getShareCount())
-                    ? FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getShareCount()
-                    : "&nbsp|" + FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getShareCount();
-        }
+        String info = !StringUtils.isNullOrEmpty(item.getId())
+                ? "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " " + item.getId() + "</b>"
+                : "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " --</b>";
+     
+        info += !StringUtils.isNullOrEmpty(item.getRating())
+                ? "&nbsp|" + FontAwesome.STAR_O.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getRating()
+                : "&nbsp|" + FontAwesome.STAR_O.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+        
+        info += !StringUtils.isNullOrEmpty(item.getViewCount())
+                ? "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount()
+                : "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+        
+        info += !StringUtils.isNullOrEmpty(item.getCommentCount())
+                ? "&nbsp|" + FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getCommentCount()
+                : "&nbsp|" + FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+        
+        info += !StringUtils.isNullOrEmpty(item.getShareCount())
+                ? "&nbsp|" + FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getShareCount()
+                : "&nbsp|" + FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
 
         if (!StringUtils.isNullOrEmpty(info)) {
             lbInfo.setCaption(info);

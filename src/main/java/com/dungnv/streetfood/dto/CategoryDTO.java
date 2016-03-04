@@ -32,6 +32,8 @@ public class CategoryDTO {
     private List<DishGroupLangageDTO> listLanguage;
     private List<String> listTag;
     private List<String> listImgUrl;
+    private List<String> listLocale;
+    private List<String> listNotLocale;
     private String imageId;
     private String imageUrl;
 
@@ -50,6 +52,22 @@ public class CategoryDTO {
         this.categoryCreateTimeGmt = categoryCreateTimeGmt;
     }
     //Getters and setters
+
+    public List<String> getListNotLocale() {
+        return listNotLocale;
+    }
+
+    public void setListNotLocale(List<String> listNotLocale) {
+        this.listNotLocale = listNotLocale;
+    }
+
+    public List<String> getListLocale() {
+        return listLocale;
+    }
+
+    public void setListLocale(List<String> listLocale) {
+        this.listLocale = listLocale;
+    }
 
     public String getDishId() {
         return dishId;

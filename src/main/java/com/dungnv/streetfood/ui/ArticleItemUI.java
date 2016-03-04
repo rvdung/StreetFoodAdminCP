@@ -130,16 +130,15 @@ public class ArticleItemUI extends VerticalLayout {
 
     private void buildAction() {
 
-        String info = "";
-        if (!StringUtils.isNullOrEmpty(item.getId())) {
-            info += "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " " + item.getId() + "</b>";
-        }
-
-        if (!StringUtils.isNullOrEmpty(item.getViewCount())) {
-            info += "&nbsp&nbsp|&nbsp&nbsp" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.EYE.getHtml() //
-                    + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount();
-        }
-
+        
+        String info = !StringUtils.isNullOrEmpty(item.getId())
+                ? "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " " + item.getId() + "</b>"
+                : "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " --</b>";
+     
+        info += !StringUtils.isNullOrEmpty(item.getViewCount())
+                ? "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount()
+                : "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+        
         if (!StringUtils.isNullOrEmpty(info)) {
             lbInfo.setCaption(info);
         }

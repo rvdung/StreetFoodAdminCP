@@ -152,34 +152,32 @@ public class RestaurantItemUI extends VerticalLayout {
             lbTitle.addStyleName("lb-status-inActive");
         }
 
-        String info = "";
-
-        if (!StringUtils.isNullOrEmpty(item.getRating())) {
-            Integer rating = Integer.valueOf(item.getRating());
-            for (int i = 0; i < 5; i++) {
-                if (i < rating) {
-                    info += "<span style=\"color:#197DE1; padding-right:5px;\">" + FontAwesome.STAR.getHtml() + "</span>";
-                } else {
-                    info += FontAwesome.STAR_O.getHtml();
-                }
-            }
-        }
-
-        if (!StringUtils.isNullOrEmpty(item.getViewCount())) {
-            info += StringUtils.isNullOrEmpty(item.getViewCount())
-                    ? FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount()
-                    : "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount();
-        }
-        if (!StringUtils.isNullOrEmpty(item.getCommentCount())) {
-            info += StringUtils.isNullOrEmpty(item.getCommentCount())
-                    ? FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getCommentCount()
-                    : "&nbsp|" + FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getCommentCount();
-        }
-        if (!StringUtils.isNullOrEmpty(item.getShareCount())) {
-            info += StringUtils.isNullOrEmpty(item.getShareCount())
-                    ? FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getShareCount()
-                    : "&nbsp|" + FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getShareCount();
-        }
+        String info = !StringUtils.isNullOrEmpty(item.getId())
+                ? "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " " + item.getId() + "</b>"
+                : "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " --</b>";
+     
+        info += !StringUtils.isNullOrEmpty(item.getRating())
+                ? "&nbsp|" + FontAwesome.STAR_O.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getRating()
+                : "&nbsp|" + FontAwesome.STAR_O.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+        
+        info += !StringUtils.isNullOrEmpty(item.getViewCount())
+                ? "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getViewCount()
+                : "&nbsp|" + FontAwesome.EYE.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+        
+        info += !StringUtils.isNullOrEmpty(item.getCommentCount())
+                ? "&nbsp|" + FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getCommentCount()
+                : "&nbsp|" + FontAwesome.COMMENTS.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+        
+        info += !StringUtils.isNullOrEmpty(item.getShareCount())
+                ? "&nbsp|" + FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getShareCount()
+                : "&nbsp|" + FontAwesome.SHARE_ALT.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--";
+//        
+//        info += !StringUtils.isNullOrEmpty(item.getOperatingTimeStart())
+//                ? "&nbsp|" + FontAwesome.CLOCK_O.getHtml() + "&nbsp&nbsp:&nbsp&nbsp" + item.getOperatingTimeStart() + " / "
+//                : "&nbsp|" + FontAwesome.CLOCK_O.getHtml() + "&nbsp&nbsp:&nbsp&nbsp--:--" + " / ";
+//        
+//        info += !StringUtils.isNullOrEmpty(item.getOperatingTimeEnd())
+//                ?  item.getOperatingTimeEnd() : "--:--" ;
 
         if (!StringUtils.isNullOrEmpty(info)) {
             lbInfo.setCaption(info);

@@ -38,10 +38,11 @@ import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.vaadin.csvalidation.CSValidator;
 import org.vaadin.teemu.wizards.Wizard;
 import org.vaadin.teemu.wizards.WizardStep;
@@ -139,7 +140,7 @@ public class RestaurantInsert extends Window implements WizardProgressListener {
             UI.getCurrent().removeWindow(event.getWizard().findAncestor(Window.class));
         } else {
             Notification.show(result == null || result.getKey() == null ? Constants.FAIL
-                            : result.getKey(), Notification.Type.ERROR_MESSAGE);
+                    : result.getKey(), Notification.Type.ERROR_MESSAGE);
         }
     }
 
@@ -259,11 +260,11 @@ public class RestaurantInsert extends Window implements WizardProgressListener {
 
             tfPriceToEn = new TextField();
             tfPriceToEn.setWidth(200.0f, Unit.PIXELS);
-//            CSValidator vlPriceToEn = new CSValidator();
-//            vlPriceToEn.extend(tfPriceToEn);
-//            vlPriceToEn.setRegExp(regexNumber);
-//            vlPriceToEn.setPreventInvalidTyping( true);
-//            tfPriceToEn.addValidator( new RegexpValidator(regexNumber, "Not a number"));
+            CSValidator vlPriceToEn = new CSValidator();
+            vlPriceToEn.extend(tfPriceToEn);
+            vlPriceToEn.setRegExp(regexNumber);
+            vlPriceToEn.setPreventInvalidTyping(true);
+            tfPriceToEn.addValidator(new RegexpValidator(regexNumber, "Not a number"));
 
             HorizontalLayout hlPriceEn = new HorizontalLayout(tfPriceFromEn, new Label("-"), tfPriceToEn, new Label("USD"));
 
@@ -282,8 +283,7 @@ public class RestaurantInsert extends Window implements WizardProgressListener {
 
             ogCarParking.addItem(BundleUtils.getLanguage("lbl.yes"));
             ogCarParking.addItem(BundleUtils.getLanguage("lbl.no"));
-            ogCarParking.addStyleName(
-                    "horizontal");
+            ogCarParking.addStyleName("horizontal");
             formLayout.addComponent(ogCarParking);
 
             tfCapacity = new TextField(BundleUtils.getLanguage("lbl.restaurant.capacity"));
@@ -301,11 +301,7 @@ public class RestaurantInsert extends Window implements WizardProgressListener {
             tfOperatingTimeStart = new TimeField();
             tfOperatingTimeEnd = new TimeField();
 
-            tfOperatingTimeStart.setValue(new Date());
-            tfOperatingTimeEnd.setValue(new Date());
-
             HorizontalLayout hlOperatingTime = new HorizontalLayout(tfOperatingTimeStart, new Label(" - "), tfOperatingTimeEnd);
-
             hlOperatingTime.setCaption(BundleUtils.getLanguage("lbl.restaurant.operatingTime"));
             hlOperatingTime.setSpacing(true);
             formLayout.addComponent(hlOperatingTime);
@@ -407,12 +403,24 @@ public class RestaurantInsert extends Window implements WizardProgressListener {
                     tfOperatingTimeStart.setValue(DateTimeUtils.convertStringToTime(dto.getOperatingTimeStart(), "HH:mm"));
                 } catch (Exception e) {
                 }
+            } else {
+                try {
+                    tfOperatingTimeStart.setValue(DateTimeUtils.convertStringToTime("07:00", "HH:mm"));
+                } catch (Exception ex) {
+                    Logger.getLogger(RestaurantInsert.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
 
             if (!StringUtils.isNullOrEmpty(dto.getOperatingTimeEnd())) {
                 try {
                     tfOperatingTimeEnd.setValue(DateTimeUtils.convertStringToTime(dto.getOperatingTimeEnd(), "HH:mm"));
                 } catch (Exception e) {
+                }
+            } else {
+                try {
+                    tfOperatingTimeEnd.setValue(DateTimeUtils.convertStringToTime("23:59", "HH:mm"));
+                } catch (Exception ex) {
+                    Logger.getLogger(RestaurantInsert.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
@@ -446,10 +454,10 @@ public class RestaurantInsert extends Window implements WizardProgressListener {
             dto.setPriceFromEn(tfPriceFromEn.getValue());
             dto.setPriceToEn(tfPriceToEn.getValue());
 
-            dto.setCarParking(ogCarParking.getValue().equals(BundleUtils.getLanguage("lbl.active"))
+            dto.setCarParking(ogCarParking.getValue().equals(BundleUtils.getLanguage("lbl.yes"))
                     ? "1" : "0");
 
-            dto.setMotobikeParking(ogMotobikeParking.getValue().equals(BundleUtils.getLanguage("lbl.active"))
+            dto.setMotobikeParking(ogMotobikeParking.getValue().equals(BundleUtils.getLanguage("lbl.yes"))
                     ? "1" : "0");
 
             dto.setCapacity(tfCapacity.getValue());

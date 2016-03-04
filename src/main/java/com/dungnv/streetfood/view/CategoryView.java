@@ -203,8 +203,8 @@ public final class CategoryView extends Panel implements View {
         });
 
         lbAdvanced.addClickListener((Button.ClickEvent event) -> {
-            searchDetail.setWidth("50%");
-            searchDetail.setHeight("50%");
+            searchDetail.setWidth("80%");
+            searchDetail.setHeight("70%");
             searchDetail.setModal(true);
             FWUtils.reloadWindow(searchDetail);
             UI.getCurrent().addWindow(searchDetail);

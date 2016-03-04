@@ -47,6 +47,10 @@ public class CategoryItemUI extends VerticalLayout {
     private Button btnDelete;
     CategoryView mainView;
 
+    Label lbTitle;
+    Label lbDesc;
+    Label lbInfo;
+
     public CategoryItemUI(CategoryDTO item, CategoryView mainView) {
         setLocale(VaadinSession.getCurrent().getLocale());
         this.mainView = mainView;
@@ -79,7 +83,7 @@ public class CategoryItemUI extends VerticalLayout {
 
         horizontal.addComponent(vlInfo);
 
-        Label lbTitle = new Label(item.getName());
+        lbTitle = new Label(item.getName());
         lbTitle.addStyleName("lb-title");
         if ("1".equals(item.getCategoryStatus())) {
             lbTitle.addStyleName("lb-status-active");
@@ -88,9 +92,16 @@ public class CategoryItemUI extends VerticalLayout {
         }
         vlInfo.addComponent(lbTitle);
 
-        Label lbDesc = new Label(item.getDescription());
+        lbDesc = new Label(item.getDescription());
         lbDesc.setStyleName("lb-description");
         vlInfo.addComponent(lbDesc);
+
+        HorizontalLayout htInfo = new HorizontalLayout();
+        vlInfo.addComponent(htInfo);
+
+        lbInfo = new Label();
+        lbInfo.setCaptionAsHtml(true);
+        htInfo.addComponent(lbInfo);
 
         HorizontalLayout htToolBar = new HorizontalLayout();
         htToolBar.setStyleName("lb-toolbar");
@@ -140,6 +151,14 @@ public class CategoryItemUI extends VerticalLayout {
 
     private void buildAction() {
 
+        String info = !StringUtils.isNullOrEmpty(item.getId())
+                ? "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " " + item.getId() + "</b>"
+                : "<b>" + com.kbdunn.vaadin.addons.fontawesome.FontAwesome.BARCODE.getHtml() + " --</b>";
+
+        if (!StringUtils.isNullOrEmpty(info)) {
+            lbInfo.setCaption(info);
+        }
+
         btnEdit.addClickListener((Button.ClickEvent event) -> {
             if (item != null) {
                 CategoryInsert CategoryInsert = new CategoryInsert(item//
@@ -152,7 +171,7 @@ public class CategoryItemUI extends VerticalLayout {
                 UI.getCurrent().addWindow(CategoryInsert);
             }
         });
-        
+
         btnLink.addClickListener((Button.ClickEvent event) -> {
             if (item != null) {
                 CategoryLink CategoryInsert = new CategoryLink(item);
@@ -179,7 +198,7 @@ public class CategoryItemUI extends VerticalLayout {
                                 UI.getCurrent().removeWindow(event.getButton().findAncestor(Window.class));
                             } else {
                                 Notification.show(result == null || result.getKey() == null ? Constants.FAIL
-                            : result.getKey(), Notification.Type.ERROR_MESSAGE);
+                                        : result.getKey(), Notification.Type.ERROR_MESSAGE);
                             }
                         }
                     });

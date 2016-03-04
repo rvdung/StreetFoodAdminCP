@@ -205,8 +205,8 @@ public class RestaurantView extends Panel implements View {
         });
 
         lbAdvanced.addClickListener((Button.ClickEvent event) -> {
-            searchDetail.setWidth("50%");
-            searchDetail.setHeight("50%");
+            searchDetail.setWidth("70%");
+            searchDetail.setHeight("100%");
             searchDetail.setModal(true);
             FWUtils.reloadWindow(searchDetail);
             UI.getCurrent().addWindow(searchDetail);

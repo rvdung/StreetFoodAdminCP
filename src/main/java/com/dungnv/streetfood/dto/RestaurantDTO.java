@@ -46,6 +46,18 @@ public class RestaurantDTO {
 
     protected String defaultSortField;
 
+    private String viewCountFrom;
+    private String commentCountFrom;
+    private String shareCountFrom;
+    private String ratingFrom;
+    private String waitingTimeFrom;
+
+    private String viewCountTo;
+    private String commentCountTo;
+    private String shareCountTo;
+    private String ratingTo;
+    private String waitingTimeTo;
+
     private String dishId;
     private String notDishId;
     private String articleId;
@@ -54,6 +66,8 @@ public class RestaurantDTO {
     private List<RestaurantLanguageDTO> listLanguage;
     private List<String> listTag;
     private List<String> listImgUrl;
+    private List<String> listLocale;
+    private List<String> listNotLocale;
     private String imageId;
     private String imageUrl;
 
@@ -92,6 +106,102 @@ public class RestaurantDTO {
         this.rating = rating;
     }
     //Getters and setters
+
+    public String getViewCountFrom() {
+        return viewCountFrom;
+    }
+
+    public void setViewCountFrom(String viewCountFrom) {
+        this.viewCountFrom = viewCountFrom;
+    }
+
+    public String getCommentCountFrom() {
+        return commentCountFrom;
+    }
+
+    public void setCommentCountFrom(String commentCountFrom) {
+        this.commentCountFrom = commentCountFrom;
+    }
+
+    public String getShareCountFrom() {
+        return shareCountFrom;
+    }
+
+    public void setShareCountFrom(String shareCountFrom) {
+        this.shareCountFrom = shareCountFrom;
+    }
+
+    public String getRatingFrom() {
+        return ratingFrom;
+    }
+
+    public void setRatingFrom(String ratingFrom) {
+        this.ratingFrom = ratingFrom;
+    }
+
+    public String getWaitingTimeFrom() {
+        return waitingTimeFrom;
+    }
+
+    public void setWaitingTimeFrom(String waitingTimeFrom) {
+        this.waitingTimeFrom = waitingTimeFrom;
+    }
+
+    public String getViewCountTo() {
+        return viewCountTo;
+    }
+
+    public void setViewCountTo(String viewCountTo) {
+        this.viewCountTo = viewCountTo;
+    }
+
+    public String getCommentCountTo() {
+        return commentCountTo;
+    }
+
+    public void setCommentCountTo(String commentCountTo) {
+        this.commentCountTo = commentCountTo;
+    }
+
+    public String getShareCountTo() {
+        return shareCountTo;
+    }
+
+    public void setShareCountTo(String shareCountTo) {
+        this.shareCountTo = shareCountTo;
+    }
+
+    public String getRatingTo() {
+        return ratingTo;
+    }
+
+    public void setRatingTo(String ratingTo) {
+        this.ratingTo = ratingTo;
+    }
+
+    public String getWaitingTimeTo() {
+        return waitingTimeTo;
+    }
+
+    public void setWaitingTimeTo(String waitingTimeTo) {
+        this.waitingTimeTo = waitingTimeTo;
+    }
+
+    public List<String> getListLocale() {
+        return listLocale;
+    }
+
+    public void setListLocale(List<String> listLocale) {
+        this.listLocale = listLocale;
+    }
+
+    public List<String> getListNotLocale() {
+        return listNotLocale;
+    }
+
+    public void setListNotLocale(List<String> listNotLocale) {
+        this.listNotLocale = listNotLocale;
+    }
 
     public String getDishId() {
         return dishId;

@@ -11,7 +11,6 @@ import com.dungnv.streetfood.ui.TagSuggestFieldUI;
 import com.dungnv.utils.BundleUtils;
 import com.vaadin.server.FontAwesome;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.TextField;

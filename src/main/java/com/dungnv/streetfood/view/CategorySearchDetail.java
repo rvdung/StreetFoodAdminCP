@@ -5,8 +5,11 @@
  */
 package com.dungnv.streetfood.view;
 
+import com.dungnv.common.ui.OptionGroupUI;
 import com.dungnv.streetfood.dto.CategoryDTO;
+import com.dungnv.streetfood.dto.LocaleDTO;
 import com.dungnv.streetfood.dto.ResultDTO;
+import com.dungnv.streetfood.service.ClientServiceImpl;
 import com.dungnv.streetfood.ui.TagSuggestFieldUI;
 import com.dungnv.utils.BundleUtils;
 import com.vaadin.server.FontAwesome;
@@ -14,12 +17,14 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.OptionGroup;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -37,9 +42,14 @@ public class CategorySearchDetail extends Window {
     TagSuggestFieldUI tagSuggestFieldUI;
 
     Button btnSearch;
+    Button btnExportExcel;
+    Button btnExportXML;
     Button btnCancel;
 
+    List<OptionGroupUI> listOgLocale;
+
     public CategorySearchDetail(CategoryView view) {
+        listOgLocale = new ArrayList<>();
         this.view = view;
         init();
         setContent(layout);
@@ -85,6 +95,16 @@ public class CategorySearchDetail extends Window {
         tagSuggestFieldUI.setWidth(80.0f, Unit.PERCENTAGE);
         form.addComponent(tagSuggestFieldUI);
 
+        Map<String, LocaleDTO> mapLocale = ClientServiceImpl.getAllLocales();
+        if (mapLocale != null && !mapLocale.isEmpty()) {
+            List<LocaleDTO> listLocale = new ArrayList<>(mapLocale.values());
+            listLocale.stream().map((localeDTO) -> new OptionGroupUI(localeDTO.getLocale()//
+                    , localeDTO.getId())).forEach((ogLocale) -> {
+                form.addComponent(ogLocale);
+                listOgLocale.add(ogLocale);
+            });
+        }
+
         HorizontalLayout hlButton = new HorizontalLayout();
         hlButton.setSpacing(true);
         hlButton.setMargin(true);
@@ -92,6 +112,12 @@ public class CategorySearchDetail extends Window {
 
         btnSearch = new Button(BundleUtils.getLanguage("lbl.search"), FontAwesome.SEARCH);
         hlButton.addComponent(btnSearch);
+
+        btnExportExcel = new Button(BundleUtils.getLanguage("lbl.exportExcel"), FontAwesome.FILE_EXCEL_O);
+        hlButton.addComponent(btnExportExcel);
+
+        btnExportXML = new Button(BundleUtils.getLanguage("lbl.exportXML"), FontAwesome.FILE_CODE_O);
+        hlButton.addComponent(btnExportXML);
 
         btnCancel = new Button(BundleUtils.getLanguage("lbl.cancel"), FontAwesome.BAN);
         hlButton.addComponent(btnCancel);
@@ -116,6 +142,20 @@ public class CategorySearchDetail extends Window {
             } else {
                 dto.setCategoryStatus("-1");
             }
+
+            List<String> listLocale = new ArrayList<>();
+            List<String> listNotLocale = new ArrayList<>();
+            for (OptionGroupUI og : listOgLocale) {
+                if (og.getValue() != null) {
+                    if (og.getValue().equals(BundleUtils.getLanguage("lbl.yes"))) {
+                        listLocale.add((String) og.getData());
+                    } else if (og.getValue().equals(BundleUtils.getLanguage("lbl.no"))) {
+                        listNotLocale.add((String) og.getData());
+                    }
+                }
+            }
+            dto.setListLocale(listLocale);
+            dto.setListNotLocale(listNotLocale);
 
             List<ResultDTO> list = tagSuggestFieldUI.getValue();
             List<String> listTag = new ArrayList<>();
